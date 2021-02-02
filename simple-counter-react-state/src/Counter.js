@@ -6,19 +6,25 @@ class Counter extends Component {
 
   increment = () => {
     this.setState(
-      (state, props) => ({ counter: state.counter + 1 })
+      ({ counter }, { max, step }) => {
+        if (counter >= max) return
+
+        return { counter: counter + step }
+      }
     )
   }
 
   decrement = () => {
     this.setState(
-      (state, props) => ({ counter: state.counter - 1 })
+      ({ counter }, { max, step }) => {
+        return { counter: counter - step }
+      }
     )
   }
 
   reset = () => {
     this.setState(
-      (state, props) => ({ counter: 0 })
+      () => ({ counter: 0 })
     )
   }
 
